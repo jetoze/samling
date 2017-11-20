@@ -13,74 +13,75 @@ import com.google.common.collect.ImmutableSet;
 
 public final class ImCollectors {
 
-	public static <T> Collector<T, ?, ImmutableList<T>> toList() {
-		return new ImListCollector<>();
-	}
+    public static <T> Collector<T, ?, ImmutableList<T>> toList() {
+        return new ImListCollector<>();
+    }
 
-	public static <T> Collector<T, ?, ImmutableSet<T>> toSet() {
-		return new ImSetCollector<>();
-	}
-	
-	
-	private static class ImListCollector<T> implements Collector<T, ImmutableList.Builder<T>, ImmutableList<T>> {
+    public static <T> Collector<T, ?, ImmutableSet<T>> toSet() {
+        return new ImSetCollector<>();
+    }
 
-		@Override
-		public Supplier<ImmutableList.Builder<T>> supplier() {
-			return ImmutableList.Builder::new;
-		}
+    
+    private static class ImListCollector<T> implements Collector<T, ImmutableList.Builder<T>, ImmutableList<T>> {
 
-		@Override
-		public BiConsumer<ImmutableList.Builder<T>, T> accumulator() {
-			return (b, e) -> b.add(e);
-		}
+        @Override
+        public Supplier<ImmutableList.Builder<T>> supplier() {
+            return ImmutableList.Builder::new;
+        }
 
-		@Override
-		public BinaryOperator<ImmutableList.Builder<T>> combiner() {
-			// TODO Auto-generated method stub
-			return (b1, b2) -> b1.addAll(b2.build());
-		}
+        @Override
+        public BiConsumer<ImmutableList.Builder<T>, T> accumulator() {
+            return (b, e) -> b.add(e);
+        }
 
-		@Override
-		public Function<ImmutableList.Builder<T>, ImmutableList<T>> finisher() {
-			return ImmutableList.Builder::build;
-		}
+        @Override
+        public BinaryOperator<ImmutableList.Builder<T>> combiner() {
+            // TODO Auto-generated method stub
+            return (b1, b2) -> b1.addAll(b2.build());
+        }
 
-		@Override
-		public Set<Characteristics> characteristics() {
-			return Collections.emptySet();
-		}
-	}
-	
-	
-	private static class ImSetCollector<T> implements Collector<T, ImmutableSet.Builder<T>, ImmutableSet<T>> {
+        @Override
+        public Function<ImmutableList.Builder<T>, ImmutableList<T>> finisher() {
+            return ImmutableList.Builder::build;
+        }
 
-		@Override
-		public Supplier<ImmutableSet.Builder<T>> supplier() {
-			return ImmutableSet.Builder::new;
-		}
+        @Override
+        public Set<Characteristics> characteristics() {
+            return Collections.emptySet();
+        }
+    }
 
-		@Override
-		public BiConsumer<ImmutableSet.Builder<T>, T> accumulator() {
-			return (b, e) -> b.add(e);
-		}
+    
+    private static class ImSetCollector<T> implements Collector<T, ImmutableSet.Builder<T>, ImmutableSet<T>> {
 
-		@Override
-		public BinaryOperator<ImmutableSet.Builder<T>> combiner() {
-			// TODO Auto-generated method stub
-			return (b1, b2) -> b1.addAll(b2.build());
-		}
+        @Override
+        public Supplier<ImmutableSet.Builder<T>> supplier() {
+            return ImmutableSet.Builder::new;
+        }
 
-		@Override
-		public Function<ImmutableSet.Builder<T>, ImmutableSet<T>> finisher() {
-			return ImmutableSet.Builder::build;
-		}
+        @Override
+        public BiConsumer<ImmutableSet.Builder<T>, T> accumulator() {
+            return (b, e) -> b.add(e);
+        }
 
-		@Override
-		public Set<Characteristics> characteristics() {
-			return Collections.emptySet();
-		}
-	}
-	
-	private ImCollectors() {/**/}
+        @Override
+        public BinaryOperator<ImmutableSet.Builder<T>> combiner() {
+            // TODO Auto-generated method stub
+            return (b1, b2) -> b1.addAll(b2.build());
+        }
+
+        @Override
+        public Function<ImmutableSet.Builder<T>, ImmutableSet<T>> finisher() {
+            return ImmutableSet.Builder::build;
+        }
+
+        @Override
+        public Set<Characteristics> characteristics() {
+            return Collections.emptySet();
+        }
+    }
+
+    private ImCollectors() {
+        /**/}
 
 }
