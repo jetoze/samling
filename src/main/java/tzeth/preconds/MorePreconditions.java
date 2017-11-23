@@ -16,6 +16,12 @@ public final class MorePreconditions {
 		return n;
 	}
 	
+	public static int checkInRange(int n, int minInclusive, int maxInclusive) {
+	    checkArgument(minInclusive <= maxInclusive);
+	    checkArgument(n >= minInclusive && n <= maxInclusive);
+	    return n;
+	}
+	
 	public static String checkNotEmpty(String s) {
 		checkArgument(!Strings.isNullOrEmpty(s));
 		return s;
