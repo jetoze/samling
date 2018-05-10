@@ -81,7 +81,6 @@ public final class ImCollectors {
         }
     }
 
-    private ImCollectors() {
-        /**/}
+    private ImCollectors() {/**/}
 
 }
