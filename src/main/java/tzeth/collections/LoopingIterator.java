@@ -47,6 +47,12 @@ public abstract class LoopingIterator<T> implements Iterator<T> {
         return true;
     }
     
+    /**
+     * Returns a Stream representation of this iterator.
+     * <p>
+     * <strong>Note</strong>: Since the iterator is endless, this stream will be too.
+     * It should typically be {@link Stream#limit(long) limited} when used.
+     */
     public Stream<T> toStream() {
         return StreamSupport.stream(
                 Spliterators.spliteratorUnknownSize(this, Spliterator.ORDERED),
