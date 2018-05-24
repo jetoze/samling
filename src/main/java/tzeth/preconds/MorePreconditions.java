@@ -19,7 +19,7 @@ public final class MorePreconditions {
      *             if {@code n <= 0}
      */
     public static int checkPositive(int n) {
-        checkArgument(n > 0);
+        checkArgument(n > 0, "value must be > 0 but was %s", n);
         return n;
     }
 
@@ -31,13 +31,15 @@ public final class MorePreconditions {
      *             if {@code n < 0}
      */
     public static int checkNotNegative(int n) {
-        checkArgument(n >= 0);
+        checkArgument(n >= 0, "value must be >= 0 but was %s", n);
         return n;
     }
 
     public static int checkInRange(int n, int minInclusive, int maxInclusive) {
-        checkArgument(minInclusive <= maxInclusive);
-        checkArgument(n >= minInclusive && n <= maxInclusive);
+        checkArgument(minInclusive <= maxInclusive, 
+                "minInclusive must be <= maxInclusive, but %s > %s", minInclusive, maxInclusive);
+        checkArgument(n >= minInclusive && n <= maxInclusive,
+                "value must be in range [%s, %s] but was %s", minInclusive, maxInclusive, n);
         return n;
     }
 
