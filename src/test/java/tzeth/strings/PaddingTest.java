@@ -16,7 +16,7 @@ public final class PaddingTest {
         String s = "hello";
         int n = 20;
         
-        String padded = Padding.of(n).padLeft(s);
+        String padded = Padding.of(n).left(s);
 
         String expected = Strings.repeat(" ", n - s.length()) + s;
         assertEquals(expected, padded);
@@ -26,7 +26,7 @@ public final class PaddingTest {
     public void testLeftPadOfEmptyString() {
         int n = 20;
         
-        String padded = Padding.of(n).padLeft("");
+        String padded = Padding.of(n).left("");
         
         assertEquals(Strings.repeat(" ", n), padded);
     }
@@ -36,7 +36,7 @@ public final class PaddingTest {
         String s = "hello";
         int n = 2;
         
-        String padded = Padding.of(n).padLeft(s);
+        String padded = Padding.of(n).left(s);
         
         assertEquals(s, padded);
     }
@@ -47,7 +47,7 @@ public final class PaddingTest {
         String s = "hello";
         int n = 20;
         
-        String padded = Padding.of(n).padRight(s);
+        String padded = Padding.of(n).right(s);
 
         String expected = s + Strings.repeat(" ", n - s.length());
         assertEquals(expected, padded);
@@ -57,7 +57,7 @@ public final class PaddingTest {
     public void testRightPadOfEmptyString() {
         int n = 20;
         
-        String padded = Padding.of(n).padRight("");
+        String padded = Padding.of(n).right("");
         
         assertEquals(Strings.repeat(" ", n), padded);
     }
@@ -67,7 +67,7 @@ public final class PaddingTest {
         String s = "hello";
         int n = 2;
         
-        String padded = Padding.of(n).padRight(s);
+        String padded = Padding.of(n).right(s);
         
         assertEquals(s, padded);
     }

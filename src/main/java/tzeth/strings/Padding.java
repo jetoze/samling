@@ -16,22 +16,30 @@ public final class Padding {
         return new Padding(width);
     }
     
-    public String padLeft(String s) {
+    public String left(String s) {
         requireNonNull(s);
         return Strings.padStart(s, width, ' ');
     }
     
-    public String padRight(String s) {
+    public String right(String s) {
         requireNonNull(s);
         return Strings.padEnd(s, width, ' ');
     }
     
-    public String padLeft(int i) {
-        return padLeft(Integer.toString(i));
+    public String left(Object o) {
+        return left(o.toString());
+    }
+
+    public String right(Object o) {
+        return right(o.toString());
     }
     
-    public String padRight(int i) {
-        return padRight(Integer.toString(i));
+    public String left(int i) {
+        return left(Integer.toString(i));
+    }
+    
+    public String right(int i) {
+        return right(Integer.toString(i));
     }
 
 }
