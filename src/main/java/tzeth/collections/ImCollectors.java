@@ -30,6 +30,10 @@ public final class ImCollectors {
         return Collector.of(supplier, accumulator, combiner, finisher);
     }
 
+    public static <K, V> Collector<V, ?, ImmutableMap<K, V>> toMap(Function<? super V, ? extends K> keyMapper) {
+        return toMap(keyMapper, t -> t);
+    }
+    
     public static <T, K, V> Collector<T, ?, ImmutableMap<K, V>> toMap(Function<? super T, ? extends K> keyMapper,
             Function<? super T, ? extends V> valueMapper) {
         requireNonNull(keyMapper);
