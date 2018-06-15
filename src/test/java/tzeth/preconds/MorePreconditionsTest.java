@@ -1,13 +1,10 @@
 package tzeth.preconds;
 
 import static org.junit.Assert.assertEquals;
-import static tzeth.preconds.MorePreconditions.checkInRange;
-import static tzeth.preconds.MorePreconditions.checkNotBlank;
-import static tzeth.preconds.MorePreconditions.checkNotEmpty;
-import static tzeth.preconds.MorePreconditions.checkNotNegative;
-import static tzeth.preconds.MorePreconditions.checkPositive;
+import static tzeth.preconds.MorePreconditions.*;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
@@ -116,6 +113,36 @@ public final class MorePreconditionsTest {
     
     private void checkNotBlankPassImpl(String s) {
         assertEquals(s, checkNotBlank(s));
+    }
+
+    @Test
+    public void testOneOfPassWithSingleOption() {
+        checkOneOf(TimeUnit.SECONDS, TimeUnit.SECONDS);
+    }
+
+    @Test
+    public void testOneOfPassWithTwoOptions() {
+        checkOneOf(TimeUnit.SECONDS, TimeUnit.SECONDS, TimeUnit.MINUTES);
+    }
+
+    @Test
+    public void testOneOfPassWithSeveralOptions() {
+        checkOneOf(TimeUnit.SECONDS, TimeUnit.SECONDS, TimeUnit.MINUTES, TimeUnit.HOURS, TimeUnit.DAYS);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testOneOfFailWithOneOption() {
+        checkOneOf(TimeUnit.MILLISECONDS, TimeUnit.SECONDS);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testOneOfFailWithTwoOption() {
+        checkOneOf(TimeUnit.MILLISECONDS, TimeUnit.SECONDS, TimeUnit.MINUTES);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testOneOfFailWithSeveralOption() {
+        checkOneOf(TimeUnit.MILLISECONDS, TimeUnit.SECONDS, TimeUnit.MINUTES, TimeUnit.HOURS, TimeUnit.DAYS);
     }
     
 }

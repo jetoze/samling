@@ -71,6 +71,24 @@ public final class MorePreconditions {
         checkArgument(s != null && s.trim().length() > 0);
         return s;
     }
+    
+    /**
+     * Ensures that the given enum constant is one of the expected values.
+     */
+    @SafeVarargs
+    public static <E extends Enum<E>> E checkOneOf(E value, E first, E... rest) {
+        boolean match = value == first;
+        if (!match) {
+            for (E e : rest) {
+                match = value == e;
+                if (match) 
+                    break;
+            }
+        }
+        checkArgument(match, "%s is not a supported value", value);
+        return value;
+    }
+    
 
     private MorePreconditions() {/**/}
 
