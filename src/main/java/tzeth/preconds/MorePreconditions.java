@@ -68,7 +68,20 @@ public final class MorePreconditions {
      *             if {@code s == null} or {@code s.trim().length() == 0}.
      */
     public static String checkNotBlank(String s) {
-        checkArgument(s != null && s.trim().length() > 0);
+        checkArgument(s != null && !s.isBlank());
+        return s;
+    }
+    
+    /**
+     * Ensures that the given string is not null, and not empty or consisting entirely
+     * of whitespace.
+     * 
+     * @return the input string provided it was non-null and not blank.
+     * @throws IllegalArgumentException
+     *             if {@code s == null} or {@code s.trim().length() == 0}.
+     */
+    public static String checkNotBlank(String s, String errorMessage) {
+        checkArgument(s != null && !s.isBlank(), errorMessage);
         return s;
     }
     
